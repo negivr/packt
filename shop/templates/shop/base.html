@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My shop{% endblock %}</title>
+    <link href='{% static "css/base.html" %}' rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <a href="/" class="logo">My shop</a>
+    </div>
+    <div id="subheader">
+        <div class="cart">
+            {% with total_items=cart|lenght %}
+                {% if cart|lenght > 0 %}
+                    Your cart:
+                    <a href="{% url 'cart:cart_detail' %}">
+                        {{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total }}
+                    </a>
+        </div>
+    </div>
+</body>
+</html>
